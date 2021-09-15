@@ -1,0 +1,128 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@1,200&display=swap');
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    background: white;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.container {
+    max-width: 400px;
+    border-radius: 20px;
+}
+
+.card {
+    border-radius: 20px;
+    height: 600px;
+    background-image: linear-gradient(to right, #0084ff, #00f2ff);
+    border: none;
+    overflow: hidden;
+    box-shadow: 0 5px 8px #414141;
+    z-index: 0;
+    box-sizing: border-box;
+}
+
+.circle {
+    height: 700px;
+    width: 700px;
+    position: absolute;
+    bottom: -230px;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: white;
+    clip-path: circle(50%);
+    z-index: -1;
+    overflow: hidden;
+}
+
+.myHead {
+    margin-top: 30px;
+    font-size: 30px;
+    margin-bottom: 10px;
+    font-weight: 700;
+    background-image: linear-gradient(to right, #0084ff, #00f2ff);
+    color: transparent;
+    background-clip: text;
+    -webkit-background-clip: text;
+}
+
+.far {
+    font-size: 40px;
+}
+
+.fas {
+    position: relative;
+    display: block;
+    left: -87px;
+    top: 30px;
+    color: rgb(255, 255, 255);
+}
+
+.button {
+    height: 42px;
+    width: 250px;
+    border-radius: 25px;
+    background-image: linear-gradient(to right, #0084ff, #00f2ff);
+    color: white;
+    font-weight: 700;
+    cursor: pointer;
+    border: none;
+    margin-top: 30px;
+}
+
+.myInput {
+    height: 42px;
+    width: 220px;
+    padding-left: 40px;
+    border-radius: 25px;
+    background-image: linear-gradient(to right, #0084ff, #00f2ff);
+    color: white;
+    border: none;
+    display: block;
+}
+
+.myInput::placeholder {
+    color: white;
+    opacity: 0.6;
+}
+
+.myInput:focus {
+    border: none;
+    outline: none;
+}
+
+.check_1 {
+    text-decoration: none;
+    font-weight: 700;
+    color: rgb(46, 44, 44);
+    font-size: 12px;
+    margin: 15px auto;
+    cursor: pointer;
+}
+
+.account {
+    font-size: 14px;
+    border-radius: 40px;
+    height: 36px;
+    padding-left: 15px;
+    color: black;
+    font-weight: 600;
+}
+
+.account a {
+    color: rgb(9, 9, 204);
+}
+
+@media (max-width: 768px) {
+    .container {
+        max-width: 100%
+    }
+}

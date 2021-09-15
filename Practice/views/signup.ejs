@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Form</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
+      crossorigin="anonymous"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
+    />
+    <link rel="stylesheet" href="/css/login-signin.css" />
+  </head>
+
+  <body>
+    <div class="container">
+      <div class="card">
+        <div class="card-body">
+          <div class="circle"></div>
+          <header class="myHead text-center mt-0">
+            <i class="far fa-user"></i>
+            <p>SIGN UP</p>
+          </header>
+          <form class="main-form text- text-center">
+            <div class="form-group my-0">
+              <label class="my-0">
+                <i class="fas fa-user"></i>
+                <input
+                  type="text"
+                  name="fullName"
+                  class="myInput"
+                  placeholder="Fullname"
+                  required
+                />
+                <div class="name error"></div>
+              </label>
+            </div>
+            <div class="form-group my-0">
+              <label class="mt-0">
+                <i class="fas fa-envelope"></i>
+                <input
+                  type="email"
+                  class="myInput"
+                  name="email"
+                  placeholder="Email"
+                  required
+                />
+                <div class="email error"></div>
+              </label>
+            </div>
+            <div class="form-group my-0">
+              <label class="my-0">
+                <i class="fas fa-lock"></i>
+                <input
+                  type="password"
+                  class="myInput"
+                  name="password"
+                  placeholder="Password"
+                  required
+                />
+              </label>
+            </div>
+            <div class="password error"></div>
+
+            <div class="form-group">
+              <label>
+                <button
+                  type="submit"
+                  class="form-contol button mt-3"
+                  name="signup"
+                >
+                  Signup
+                </button>
+              </label>
+            </div>
+
+            <div class="mt-1 text-center">
+              <label class="form-label account"
+                >Already have an Account? &nbsp;<a
+                  href="/login"
+                  style="text-decoration: none"
+                  >Sign In</a
+                ></label
+              >
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"
+      integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js"
+      integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF"
+      crossorigin="anonymous"
+    ></script>
+
+    <script>
+      const form = document.querySelector("form");
+      const nameError = document.querySelector(".name.error");
+      const emailError = document.querySelector(".email.error");
+      const passwordError = document.querySelector(".password.error");
+
+      form.addEventListener("submit", async (e) => {
+        e.preventDefault();
+
+        //reset errors
+        nameError.textContent = "";
+        emailError.textContent = "";
+        passwordError.textContent = "";
+
+        //get values
+        const fullName = form.fullName.value;
+        const email = form.email.value;
+        const password = form.password.value;
+
+        try {
+          const res = await fetch("/signup", {
+            method: "POST",
+            body: JSON.stringify({ fullName, email, password }),
+            headers: { "Content-Type": "application/json" },
+          });
+          const data = await res.json();
+          console.log(data);
+          if (data.errors) {
+            nameError.textContent = data.errors.fullName;
+            emailError.textContent = data.errors.email;
+            passwordError.textContent = data.errors.password;
+          }
+          if (data.user) {
+            location.assign("/");
+          }
+        } catch (err) {
+          console.log(err);
+        }
+      });
+    </script>
+  </body>
+</html>
